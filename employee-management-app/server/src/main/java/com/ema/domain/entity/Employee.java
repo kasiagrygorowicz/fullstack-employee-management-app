@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name="employee")
 @Entity(name="employee")
@@ -31,6 +30,10 @@ public class Employee {
     @Column
     private Long salary;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -39,5 +42,13 @@ public class Employee {
                 ", lastname='" + lastname + '\'' +
                 ", department=" + department +
                 '}';
+    }
+
+    public Employee(String firstname, String lastname, Department department, Long salary, User user) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.department = department;
+        this.salary = salary;
+        this.user = user;
     }
 }
