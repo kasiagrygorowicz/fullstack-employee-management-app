@@ -5,5 +5,5 @@ import com.ema.rest.dto.user.CreateUserRequest;
 
 public interface UserService {
 
-    User addUser(CreateUserRequest user);
+    void addUser(CreateUserRequest user);
 }

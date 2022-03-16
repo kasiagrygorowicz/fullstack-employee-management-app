@@ -25,6 +25,7 @@ public class Employee {
     private String lastname;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private Department department;
 
     @Column

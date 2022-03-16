@@ -6,6 +6,7 @@ import com.ema.exceptions.UserAlreadyExistsException;
 import com.ema.rest.dto.user.CreateUserRequest;
 import com.ema.security.MyUserPrincipal;
 import com.ema.security.PasswordEncoder;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,7 +36,8 @@ public class UserServiceImpl implements UserDetailsService,UserService {
 
 
     @Override
-    public User addUser(CreateUserRequest user) {
+    public void addUser(CreateUserRequest user) {
+
 
        Optional<User> u =  userDao.findByUsername(user.getUsername());
 
@@ -44,8 +46,7 @@ public class UserServiceImpl implements UserDetailsService,UserService {
 
        User newUser = new User(user.getUsername());
        newUser.setPassword(passwordEncoder.bCryptPasswordEncoder().encode(user.getPassword()));
-
-       return userDao.save(newUser);
+         userDao.save(newUser);
 
     }
 

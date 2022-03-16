@@ -34,7 +34,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         try {
             Map<String, String> requestMap = new ObjectMapper().readValue(request.getInputStream(), Map.class);
-            username = requestMap.get("email");
+            username = requestMap.get("username");
             password = requestMap.get("password");
         } catch (IOException e) {
             throw new AuthenticationServiceException(e.getMessage(), e);
@@ -53,7 +53,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+1000*60*60))
                 .withIssuer(request.getRequestURL().toString())
-                .withClaim("email", user.getUsername())
+                .withClaim("username", user.getUsername())
                 .withClaim("id", user.getUser().getId())
                 .sign(algorithm);
 
@@ -61,7 +61,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+1000*60*60*24*365))
                 .withIssuer(request.getRequestURL().toString())
-                .withClaim("email", user.getUsername())
+                .withClaim("username", user.getUsername())
                 .withClaim("id", user.getUser().getId())
                 .sign(algorithm);
 

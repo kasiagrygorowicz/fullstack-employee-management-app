@@ -27,20 +27,20 @@ public class EmployeeManagementAppApiApplication {
 
 
 
-    @Bean
-    CommandLineRunner run(UserServiceImpl userService, PasswordEncoder passwordEncoder, EmployeeDAO employeeDAO) {
-        return args -> {
-
-            User user = userService.addUser(new CreateUserRequest("user_1","password"));
-
-            Employee e1 = new Employee("Alice","Johnson", Department.HR, 12000L,user);
-            Employee e2 = new Employee("John","Doe", Department.IT, 8000L,user);
-            Employee e3 = new Employee("Phoebe","Williams", Department.Accounting, 6700L,user);
-
-            employeeDAO.save(e1);
-            employeeDAO.save(e2);
-            employeeDAO.save(e3);
-        };
-    }
+//    @Bean
+//    CommandLineRunner run(UserServiceImpl userService, PasswordEncoder passwordEncoder, EmployeeDAO employeeDAO) {
+//        return args -> {
+//
+//            User user = userService.addUser(new CreateUserRequest("user_1","password"));
+//
+//            Employee e1 = new Employee("Alice","Johnson", Department.HR, 12000L,user);
+//            Employee e2 = new Employee("John","Doe", Department.IT, 8000L,user);
+//            Employee e3 = new Employee("Phoebe","Williams", Department.Accounting, 6700L,user);
+//
+//            employeeDAO.save(e1);
+//            employeeDAO.save(e2);
+//            employeeDAO.save(e3);
+//        };
+//    }
 
 }

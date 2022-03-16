@@ -30,6 +30,8 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
     private final UserDAO userDao;
 
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         if(request.getServletPath().equals("/api/login")){
@@ -42,9 +44,9 @@ public class AuthorizationFilter extends OncePerRequestFilter {
                     Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
                     JWTVerifier verifier = JWT.require(algorithm).build();
                     DecodedJWT decodedJWT = verifier.verify(token);
-                    String email = decodedJWT.getSubject();
-                    User user = userDao.findByUsername(email).orElseThrow();
-                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(new MyUserPrincipal(user), null, null);
+                    String username = decodedJWT.getSubject();
+                    User user = userDao.findByUsername(username).orElseThrow();
+                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, null);
                     SecurityContextHolder.getContext().setAuthentication(auth);
                     filterChain.doFilter(request, response);
                 }
