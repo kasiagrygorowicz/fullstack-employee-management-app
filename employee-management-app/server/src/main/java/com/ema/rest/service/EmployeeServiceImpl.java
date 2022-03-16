@@ -6,8 +6,13 @@ import com.ema.domain.entity.Employee;
 import com.ema.domain.entity.User;
 import com.ema.exceptions.EmployeeNotFoundException;
 import com.ema.rest.dto.employee.CreateEmployeeRequest;
+import com.ema.rest.dto.employee.EditEmployeeRequest;
+import com.ema.rest.dto.employee.GetEmployeeInfoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +33,17 @@ public class EmployeeServiceImpl implements EmployeeService{
        employeeDAO.delete(employee);
     }
 
+    @Override
+    public List<GetEmployeeInfoRequest> getAllUserEmployees() {
+        User user = Utils.getCurrentUser();
+        return user.getEmployees().stream().map(EmployeeMapper::map).collect(Collectors.toList());
+    }
+
+    @Override
+    public void editEmployee(EditEmployeeRequest employee) {
+
+    }
+
 
     private static class EmployeeMapper{
 
@@ -38,6 +54,16 @@ public class EmployeeServiceImpl implements EmployeeService{
                     Department.valueOf(e.getDepartment()),
                     e.getSalary(),
                     Utils.getCurrentUser()
+            );
+        }
+
+        private static GetEmployeeInfoRequest map(Employee e){
+            return new GetEmployeeInfoRequest(
+                    e.getId(),
+                    e.getFirstname(),
+                    e.getLastname(),
+                    e.getDepartment().toString(),
+                    e.getSalary()
             );
         }
     }

@@ -1,6 +1,8 @@
 drop table if exists employee;
+drop cast if exists (CHARACTER VARYING as department);
 drop type if exists department;
 drop table if exists users;
+
 
 create table users
 (

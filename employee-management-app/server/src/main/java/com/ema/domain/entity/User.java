@@ -2,6 +2,8 @@ package com.ema.domain.entity;
 
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,6 +31,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "user")
+    @Fetch(FetchMode.JOIN)
     private List<Employee> employees = new ArrayList<>();
 
     public User(String username) {
