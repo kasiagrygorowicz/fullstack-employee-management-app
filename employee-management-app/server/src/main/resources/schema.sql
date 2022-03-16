@@ -31,5 +31,7 @@ create table employee
 
 );
 
+CREATE CAST (CHARACTER VARYING as department) WITH INOUT AS IMPLICIT;
+
 
 

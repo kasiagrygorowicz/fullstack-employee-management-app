@@ -1,8 +1,7 @@
 package com.ema.domain.entity;
 
 import com.sun.istack.NotNull;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,7 +11,8 @@ import java.util.Collection;
 import java.util.List;
 
 @NoArgsConstructor
-@Data
+@Getter@Setter
+@EqualsAndHashCode(exclude = {"employees"})
 @Entity
 @Table(name="users")
 public class User {

@@ -56,23 +56,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(STATELESS)
-//                .and()
-//                .authorizeRequests().antMatchers("/login").permitAll()
-//                .authorizeRequests().antMatchers("/h2-console/**").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/api/login").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/api/register/**").permitAll()
                 .and()
-                .authorizeRequests().anyRequest().permitAll()
-//                .and().csrf().ignoringAntMatchers("/h2-console/**")
+                .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new AuthorizationFilter(userDao), UsernamePasswordAuthenticationFilter.class)
                 .addFilter(authenticationFilter);
 
 
 
-//        http.headers().frameOptions().sameOrigin();
     }
 
     @Bean

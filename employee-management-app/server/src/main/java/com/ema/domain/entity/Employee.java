@@ -31,7 +31,7 @@ public class Employee {
     @Column
     private Long salary;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 

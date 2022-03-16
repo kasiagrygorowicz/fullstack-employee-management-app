@@ -3,6 +3,7 @@ package com.ema.rest.service;
 import com.ema.domain.dao.EmployeeDAO;
 import com.ema.domain.entity.Department;
 import com.ema.domain.entity.Employee;
+import com.ema.domain.entity.User;
 import com.ema.exceptions.EmployeeNotFoundException;
 import com.ema.rest.dto.employee.CreateEmployeeRequest;
 import lombok.RequiredArgsConstructor;
