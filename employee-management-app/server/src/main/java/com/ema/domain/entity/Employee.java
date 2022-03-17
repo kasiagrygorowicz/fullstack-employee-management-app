@@ -54,4 +54,11 @@ public class Employee {
         this.salary = salary;
         this.user = user;
     }
+
+    public Employee(String firstname, String lastname, Department department, Long salary) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.department = department;
+        this.salary = salary;
+    }
 }

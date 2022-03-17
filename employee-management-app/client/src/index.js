@@ -2,11 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { StyledEngineProvider } from '@mui/material/styles';
 import reportWebVitals from './reportWebVitals';
+import ButtonAppBar from "./components/navbar";
+import Demo from './demo';
 
 ReactDOM.render(
   <React.StrictMode>
+      <StyledEngineProvider injectFirst>
+          <Demo/>
     <App />
+          </StyledEngineProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

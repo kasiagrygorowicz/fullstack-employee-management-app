@@ -27,9 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public void deleteEmployee(Long id) {
-       Employee employee = employeeDAO.findById(id).orElseThrow(
-               ()-> new EmployeeNotFoundException(id)
-       );
+       Employee employee = employeeDAO.getById(id);
        employeeDAO.delete(employee);
     }
 
@@ -40,8 +38,21 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void editEmployee(EditEmployeeRequest employee) {
+    public void editEmployee(EditEmployeeRequest employee, Long id) {
+        Employee e = employeeDAO.getById(id);
 
+        e.setFirstname(employee.getFirstname());
+        e.setLastname(employee.getLastname());
+        e.setDepartment(Department.valueOf(employee.getDepartment()));
+        e.setSalary(employee.getSalary());
+
+        employeeDAO.flush();
+    }
+
+    @Override
+    public GetEmployeeInfoRequest getEmployee(Long id) {
+        Employee employee = employeeDAO.getById(id);
+        return EmployeeMapper.map(employee);
     }
 
 
