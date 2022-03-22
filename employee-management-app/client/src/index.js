@@ -2,19 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { StyledEngineProvider } from '@mui/material/styles';
 import reportWebVitals from './reportWebVitals';
-import ButtonAppBar from "./components/navbar";
-import Demo from './demo';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Popper from '@popperjs/core';
+
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Layout from "./components/layout/Layout";
+import Dashboard from "./pages/Dashboard";
+import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-      <StyledEngineProvider injectFirst>
-          <Demo/>
-    <App />
-          </StyledEngineProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <BrowserRouter>
+    <React.StrictMode>
+            <App/>
+    </React.StrictMode>
+    </BrowserRouter>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
