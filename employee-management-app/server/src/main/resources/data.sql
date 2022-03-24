@@ -1,9 +1,9 @@
 insert into users(username,password)
 values(
-       'user_1','$2a$13$/E/9O91uPnLZ2jF0WkGAUuq51em.TPIGz5xQJ5gvVG48Lir1yNu56'
+       'user_1@email.com','$2a$13$/E/9O91uPnLZ2jF0WkGAUuq51em.TPIGz5xQJ5gvVG48Lir1yNu56'
       ),
       (
-          'user_2','$2a$13$/E/9O91uPnLZ2jF0WkGAUuq51em.TPIGz5xQJ5gvVG48Lir1yNu56'
+          'user_2@email.com','$2a$13$/E/9O91uPnLZ2jF0WkGAUuq51em.TPIGz5xQJ5gvVG48Lir1yNu56'
       );
 
 insert into employee (firstname, lastname, salary, department,user_id)
