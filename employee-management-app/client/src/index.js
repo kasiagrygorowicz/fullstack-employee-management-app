@@ -4,19 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Popper from '@popperjs/core';
 
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Layout from "./components/layout/Layout";
-import Dashboard from "./pages/Dashboard";
+
 import {BrowserRouter} from "react-router-dom";
+import {AuthContextProvider} from "./security/authContext";
+
 
 ReactDOM.render(
+
+    <AuthContextProvider>
     <BrowserRouter>
     <React.StrictMode>
             <App/>
     </React.StrictMode>
-    </BrowserRouter>,
+    </BrowserRouter>
+        </AuthContextProvider>,
+
     document.getElementById('root')
 );
 

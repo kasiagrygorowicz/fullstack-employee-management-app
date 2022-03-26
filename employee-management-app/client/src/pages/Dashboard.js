@@ -1,30 +1,53 @@
-import {Container, Row} from "react-bootstrap";
+import {Alert, Container, Pagination, Row} from "react-bootstrap";
 import EmployeeCard from "../components/EmployeeCard";
+import {useLocation, useParams} from "react-router-dom";
+import {useContext, useEffect, useMemo} from "react";
+import useFetch from "../api/useFetch";
+import useUserEmployees from "../api/getEmployees";
+import EmployeeListChangeContext from "../security/changeContext";
 
 export default function Dashboard() {
+    let isSuccess = useQuery()
+    const context = useContext(EmployeeListChangeContext)
+    const {isLoading, error, employees, setEmployees} = useUserEmployees();
+
+
+    function useQuery() {
+        const {search} = useLocation();
+
+        return useMemo(() => new URLSearchParams(search), [search]);
+    }
+
     return (
-        // <div class='min-vh-100 bg-info '>
 
-            <Container className='row' fluid style={{
-                justifyContent:'center',backgroundColor:'red',
-
-                marginBottom:'0'
-            }}>
-
-                <Row class="bg-dark">
-                    <EmployeeCard/>
-                </Row>
-                <Row>
-                    <EmployeeCard/>
-                </Row>
-                <Row>
-                    <EmployeeCard />
-                </Row>
-
-            </Container>
+        <Container
+            key={context.updated}
+            className="row bg-dark p-xxl-5 p-xl-4 pt-md-3  col-md-10 col-lg-8 col-xl-5 h-100 w-75 " style={{
+            marginTop: '120px',
+            borderRadius: '15px'
+        }} fluid>
 
 
+            {
+                isSuccess.get('success') && <Alert className="alert-success">Employee created successfully.</Alert>
+            }
 
-        // </div>
+            {
+            employees.map(e=>(
+            <EmployeeCard
+                id={e.id}
+                firstname={e.firstname}
+                lastname={e.lastname}
+                department={e.department}
+                salary={e.salary}
+
+            />))
+            })
+            }
+
+
+        </Container>
+
+
     );
 }

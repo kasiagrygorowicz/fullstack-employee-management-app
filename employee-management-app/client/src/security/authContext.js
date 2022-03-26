@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-
+import {useNavigate} from "react-router-dom";
+const navigate= useNavigate
 const AuthContext = React.createContext({
     authToken: '',
     requestToken: '',
@@ -31,6 +32,7 @@ export const AuthContextProvider = (props) => {
     const logoutHandler = () => {
         setAuthToken(null);
         localStorage.removeItem("authToken");
+        navigate('/login')
     }
 
     const contextValue = {

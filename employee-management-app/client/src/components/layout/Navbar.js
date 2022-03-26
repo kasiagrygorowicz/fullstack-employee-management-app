@@ -1,7 +1,16 @@
 import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {useContext} from "react";
+import AuthContext from "../../security/authContext";
+import {Link} from "react-bootstrap-icons";
 
 
 export default function MyNavbar(){
+
+    const authCtx = useContext(AuthContext)
+
+    const logoutHandler = () => {
+        authCtx.logout();
+    }
 
     return(
 
@@ -11,18 +20,31 @@ export default function MyNavbar(){
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#features">Add Employee</Nav.Link>
+                        <Nav.Link href="/user/create">Add Employee</Nav.Link>
                     </Nav>
                     <Nav>
+
+                        {authCtx.isLoggedIn &&
+                            <Button variant={"outline-danger"} className={'m-lg-1'} onClick={logoutHandler} >
+                                Sign out
+                            </Button>
+                        }
+                        {!authCtx.isLoggedIn&&
+                        <>
+
                         <Button variant={"outline-info"} className={'m-lg-1'}>
+
                             Sign up
+
                         </Button>
-                        <Button variant={"outline-danger"} className={'m-lg-1'}>
-                            Sign out
-                        </Button>
+
                         <Button variant={"info"}  className={'m-lg-1'}>
-                            Sign in
+                        Sign in
                         </Button>
+                        </>
+
+                    }
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
