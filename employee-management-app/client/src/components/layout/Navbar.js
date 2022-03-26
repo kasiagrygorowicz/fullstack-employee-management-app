@@ -2,11 +2,13 @@ import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {useContext} from "react";
 import AuthContext from "../../security/authContext";
 import {Link} from "react-bootstrap-icons";
+import {useNavigate} from "react-router-dom";
 
 
 export default function MyNavbar(){
 
     const authCtx = useContext(AuthContext)
+    const navigate =useNavigate()
 
     const logoutHandler = () => {
         authCtx.logout();
@@ -32,13 +34,13 @@ export default function MyNavbar(){
                         {!authCtx.isLoggedIn&&
                         <>
 
-                        <Button variant={"outline-info"} className={'m-lg-1'}>
+                        <Button variant={"outline-info"} className={'m-lg-1'} onClick={()=>navigate('/signup',{replace:true})}>
 
                             Sign up
 
                         </Button>
 
-                        <Button variant={"info"}  className={'m-lg-1'}>
+                        <Button variant={"info"}  className={'m-lg-1'} onClick={()=>navigate('/login',{replace:true})}>
                         Sign in
                         </Button>
                         </>

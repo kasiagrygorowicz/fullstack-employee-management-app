@@ -2,6 +2,8 @@ import {Alert, Button, ButtonGroup, Col, Container, Form, Row} from "react-boots
 import {Link, useNavigate} from "react-router-dom";
 import {createRef, useState} from "react";
 import useFetch from "../api/useFetch";
+import {BsArrowBarLeft} from "react-icons/bs";
+import {AiOutlineArrowLeft} from "react-icons/ai";
 
 
 export default function CreateEmployee() {
@@ -46,7 +48,18 @@ export default function CreateEmployee() {
             marginTop: '120px',
             borderRadius: '15px'
         }} fluid>
-            <h1 className="text-white mb-4 "> Add new employee</h1>
+
+            <Row className="row">
+                <Col>
+                    <AiOutlineArrowLeft size="40" style={{
+                        color:'white',
+                    }} onClick={()=>navigate('/dashboard')}/>
+                </Col>
+                <Col className="col-lg-10 justify-content-right">
+                    <h1 className="text-white mb-4 "> Add new employee</h1>
+                </Col>
+            </Row>
+
             <Form onSubmit={submitHandler}>
 
                 <Row className="mb-3">
@@ -85,6 +98,7 @@ export default function CreateEmployee() {
 
                 <ButtonGroup className='mb-3 d-flex'>
                     <Button className="bg-info border-info text-dark" type='submit'>{'Add new employee'}</Button>
+
                 </ButtonGroup>
 
             </Form>

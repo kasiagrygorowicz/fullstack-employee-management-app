@@ -7,7 +7,7 @@ import useUserEmployees from "../api/getEmployees";
 import EmployeeListChangeContext from "../security/changeContext";
 
 export default function Dashboard() {
-    let isSuccess = useQuery()
+    let param = useQuery()
     const context = useContext(EmployeeListChangeContext)
     const {isLoading, error, employees, setEmployees} = useUserEmployees();
 
@@ -27,27 +27,26 @@ export default function Dashboard() {
             borderRadius: '15px'
         }} fluid>
 
-
             {
-                isSuccess.get('success') && <Alert className="alert-success">Employee created successfully.</Alert>
+                param.get('success') && <Alert className="alert-success">Employee created successfully.</Alert>
+
             }
 
             {
-            employees.map(e=>(
-            <EmployeeCard
-                id={e.id}
-                firstname={e.firstname}
-                lastname={e.lastname}
-                department={e.department}
-                salary={e.salary}
+                employees.map(e => (
+                    <EmployeeCard
+                        key={e.id}
+                        id={e.id}
+                        firstname={e.firstname}
+                        lastname={e.lastname}
+                        department={e.department}
+                        salary={e.salary}
 
-            />))
+                    />))
             })
             }
 
-
         </Container>
-
 
     );
 }

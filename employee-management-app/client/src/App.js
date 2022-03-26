@@ -22,6 +22,7 @@ function App() {
                     <>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<Signup/>}/>
+                        <Route path='/*' element={<Navigate to="/login" />} />
                     </>
                 }
                 {authCtx.isLoggedIn && (
@@ -29,10 +30,10 @@ function App() {
                         <Route path="/dashboard" element={<Dashboard/>}/>
                         <Route path="/user/create" element={<CreateEmployee/>}/>
                         <Route path="/user/employee/edit" element={<EditEmployee/>}/>
-                        <Route path="/employee/details" element={<EmployeeDetails/>}/>
+                        <Route path='/*' element={<Navigate to="/dashboard" />} />
                     </>)}
 
-                <Route path='/*' element={<Navigate to="/dashboard" />} />
+
             </Routes>
         </Layout>
 
